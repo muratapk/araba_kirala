@@ -6,9 +6,30 @@
 
 <h1>Index</h1>
 
-@foreach(var mrk in Model)
-{
-    <p>@mrk.BrandName</p>
-    <p>@mrk.ModelYear</p>
-}
-
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Marka Adı</th>
+            <th scope="col">Marka Modeli</th>
+            <th scope="col">Marka Yılı</th>
+            <th scope="col">Günlük Ücret</th>
+            <th scope="col">Düzelt</th>
+            <th scope="col">Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+      @foreach(var item in Model)
+        {
+       <tr>
+            <th scope="row">1</th>
+            <td>@item.BrandName</td>
+            <td>@item.Model</td>
+            <td>@item.ModelYear</td>
+            <td>@item.DailyPrice</td>
+       </tr>
+        }
+      
+        
+    </tbody>
+</table>
