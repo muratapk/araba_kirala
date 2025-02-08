@@ -1,0 +1,14 @@
+﻿@model List<araba_kirala.Models.Brands>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+@foreach(var mrk in Model)
+{
+    <p>@mrk.BrandName</p>
+    <p>@mrk.ModelYear</p>
+}
+
