@@ -3,7 +3,7 @@
 
 <head>
 
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -23,7 +23,7 @@
 </head>
 
 <body id="page-top">
-
+   
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -419,6 +419,29 @@
 
     <!-- Custom scripts for all pages-->
     <script src="~/Admin/js/sb-admin-2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @{
+        if (TempData["Mesaj"] != null)
+        {
+            string mesaj = TempData["Mesaj"].ToString();
+            // Ensure the message is properly escaped to avoid issues with special characters
+            mesaj = Html.Encode(mesaj);
+
+            <script>
+                Swal.fire({
+                    title: "Good job!",
+                    text: "@mesaj",
+                    icon: "success"
+                });
+            </script>
+        }
+       }
+
+
+
 
 </body>
 

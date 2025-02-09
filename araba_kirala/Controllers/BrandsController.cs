@@ -28,9 +28,16 @@ namespace araba_kirala.Controllers
         [HttpPost]
         public IActionResult Create(Brands gelen)
         {
-            _context.Brands.Add(gelen);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            if(ModelState.IsValid)
+            {
+                _context.Brands.Add(gelen);
+                _context.SaveChanges();
+                TempData["Mesaj"] = "Yeni Kayıt Oluşturuldu";
+                return RedirectToAction("Index");
+                //islem bittikten sonra Index yönlen
+            }
+            return View();
+            //tekrardan form sayfasına dön
         }
         [HttpGet]
         public IActionResult Delete(int? id) 
@@ -45,6 +52,22 @@ namespace araba_kirala.Controllers
             _context.Brands.Remove(bul);
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Edit(int ? id)
+        {
+            var bul=_context.Brands.Where(x=>x.BrandID== id).FirstOrDefault(); 
+            //git veritabanındaki 5diye gönderilen veri seç bul ata
+            return View(bul);
+            //Web Sayfasın gönder diyoruz..
+        }
+        [HttpPost]
+        public IActionResult Edit(Brands gelen)
+        {
+            _context.Brands.Update(gelen);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
         }
     }
 }
