@@ -22,8 +22,8 @@ namespace araba_kirala.Controllers
         // GET: Cars
         public async Task<IActionResult> Index()
         {
-              return _context.Cars != null ? 
-                          View(await _context.Cars.ToListAsync()) :
+        return _context.Cars != null ? 
+         View(await _context.Cars.Include(c => c.Colors).Include(b => b.Brands).ToListAsync()) :
                           Problem("Entity set 'Context.Cars'  is null.");
         }
 
@@ -48,6 +48,8 @@ namespace araba_kirala.Controllers
         // GET: Cars/Create
         public IActionResult Create()
         {
+            ViewBag.BrandList = new SelectList(_context.Brands, "BrandID", "BrandName");
+            ViewBag.ColorList = new SelectList(_context.Colors, "ColorID", "ColorName");
             return View();
         }
 
@@ -66,7 +68,7 @@ namespace araba_kirala.Controllers
             }
             return View(cars);
         }
-
+        //05054426841
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -80,6 +82,8 @@ namespace araba_kirala.Controllers
             {
                 return NotFound();
             }
+            ViewBag.BrandList = new SelectList(_context.Brands, "BrandID", "BrandName");
+            ViewBag.ColorList = new SelectList(_context.Colors, "ColorID", "ColorName");
             return View(cars);
         }
 
